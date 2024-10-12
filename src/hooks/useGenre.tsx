@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
-import useData from "./useData";
+// import useData from "./useData";
+import genres from "../data/genres";
 
 export interface Genre {
   id: number;
@@ -9,6 +7,7 @@ export interface Genre {
   image_background: string,
 }
 
-const useGenre = () => useData<Genre>("/genres");
+// const useGenre = () => useData<Genre>("/genres");
+const useGenre = () => ({ data: genres, error: null, isLoading: false })
 
 export default useGenre;
