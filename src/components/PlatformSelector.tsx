@@ -1,11 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { BsChevronRight } from 'react-icons/bs'
 import userPlatforms from '../hooks/userPlatforms'
-import { PlatForm } from '../hooks/useGames'
+import { Platform } from '../hooks/userPlatforms'
 
 interface Props {
-    onselectPlatform: (platform: PlatForm) => void;
-    selectedPlatform: PlatForm | null
+    onselectPlatform: (platform: Platform) => void;
+    selectedPlatform: Platform | null
 }
 
 const PlatformSelector = ({ onselectPlatform, selectedPlatform }: Props) => {
