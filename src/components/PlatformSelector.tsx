@@ -18,7 +18,7 @@ const PlatformSelector = ({ onselectPlatform, selectedPlatform }: Props) => {
                 {selectedPlatform?.name || 'Platforms'}
             </MenuButton>
             <MenuList>
-                {data.map(plaform => <MenuItem onClick={() => onselectPlatform(plaform)} key={plaform.id}>{plaform.name}</MenuItem>)}
+                {data?.results.map(plaform => <MenuItem onClick={() => onselectPlatform(plaform)} key={plaform.id}>{plaform.name}</MenuItem>)}
             </MenuList>
         </Menu >
     )
