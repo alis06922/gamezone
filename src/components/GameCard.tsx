@@ -1,10 +1,10 @@
 import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
-import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticBadge from "./CriticBadge";
 import getCroppedImage from "../services/image-urls";
 import Emoji from "./Emoji";
 import { Link } from "react-router-dom";
+import Game from "../entities/Game";
 
 interface Props {
   game: Game;
