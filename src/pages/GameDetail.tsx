@@ -5,6 +5,7 @@ import ExpandableText from "../components/ExpandableText";
 import DefinitionItem from "../components/DefinitionItem";
 import CriticBadge from "../components/CriticBadge";
 import GameAttributes from "../components/GameAttributes";
+import GameTrailer from "../components/GameTrailer";
 
 function GameDetail() {
     const { slug } = useParams();
@@ -15,6 +16,7 @@ function GameDetail() {
         <Heading>{game.name}</Heading>
         <ExpandableText>{game.description_raw}</ExpandableText>
         <GameAttributes game={game}></GameAttributes>
+        <GameTrailer gameId={game.id} />
     </>
 }
 
