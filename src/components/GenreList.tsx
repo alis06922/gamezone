@@ -1,40 +1,60 @@
+import {
+  Button,
+  Heading,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner
+} from '@chakra-ui/react';
+import useGenres from '../hooks/useGenres';
+import getCroppedImageUrl from '../services/image-urls';
+import useGameQueryStore from '../store';
 
-import { Button, Heading, HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
-import getCroppedImage from "../services/image-urls";
-import GenereCardSkeleton from "./GenereCardSkeleton";
-import useGenres, { Genre } from "../hooks/useGenres";
-
-interface Props {
-  onSelectGenre: (genere: Genre) => void;
-  selectedGenreId?: number
-}
-
-const genreList = ({ selectedGenreId, onSelectGenre }: Props) => {
-  const { data, error, isLoading } = useGenres();
-  const skelectons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const GenreList = () => {
+  const { data, isLoading, error } = useGenres();
+  const selectedGenreId = useGameQueryStore(s => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore(s => s.setGenreId);
 
   if (error) return null;
-  // load spinner
-  // if (isLoading) return <Spinner />
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
-      {isLoading && skelectons.map(skeleton => <GenereCardSkeleton key={skeleton} />)}
-      <>
-        <Heading fontSize="2xl" marginBottom={3}>Genre</Heading>
-        <List>
-          {data?.results.map((genre) => (
-            <ListItem key={genre.id} paddingY="5px">
-              <HStack>
-                <Image objectFit='cover' boxSize="32px" borderRadius={8} src={getCroppedImage(genre.image_background)} />
-                <Button whiteSpace="normal" textAlign="left" fontWeight={selectedGenreId == genre.id ? "bold" : "normal"} onClick={() => onSelectGenre(genre)} variant='link' fontSize="lg">{genre.name}</Button>
-              </HStack>
-            </ListItem>
-          ))}
-        </List>
-      </>
+      <Heading fontSize="2xl" marginTop={9} marginBottom={3}>
+        Genres
+      </Heading>
+      <List>
+        {data?.results.map((genre) => (
+          <ListItem key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={getCroppedImageUrl(genre.image_background)}
+              />
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                fontWeight={
+                  genre.id === selectedGenreId
+                    ? 'bold'
+                    : 'normal'
+                }
+                onClick={() => setSelectedGenreId(genre.id)}
+                fontSize="md"
+                variant="link"
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
     </>
   );
 };
 
-export default genreList;
+export default GenreList;
