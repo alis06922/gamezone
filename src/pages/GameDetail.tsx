@@ -1,12 +1,10 @@
-import { useParams } from "react-router-dom"
-import useGame from "../hooks/useGame";
-import { GridItem, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
-import DefinitionItem from "../components/DefinitionItem";
-import CriticBadge from "../components/CriticBadge";
 import GameAttributes from "../components/GameAttributes";
-import GameTrailer from "../components/GameTrailer";
 import GameScreenshots from "../components/GameScreenshots";
+import GameTrailer from "../components/GameTrailer";
+import useGame from "../hooks/useGame";
 
 function GameDetail() {
     const { slug } = useParams();
